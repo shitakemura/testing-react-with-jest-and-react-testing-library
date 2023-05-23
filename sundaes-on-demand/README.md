@@ -5,7 +5,7 @@
 - /scoops
 - /toppings
 
-#### memo
+#### setup
 
 - npm create vite@latest
 - npm i -D prettier
@@ -17,3 +17,14 @@
 
 - npm install -D msw msw-devtools
 - npx msw init public/ --save
+- npm install axios
+
+#### memo
+
+- get[All]ByXXX() : expect element to be in DOM
+- query[All]ByXXX() : expect element not to be in DOM
+- await find[All]ByXXX(): expect element to appear async
+
+- await user.click()
+- await user.hover()
+- await user.unhover()
