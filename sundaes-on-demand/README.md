@@ -1,5 +1,10 @@
 ## sandaes-on-demand
 
+#### api
+
+- /scoops
+- /toppings
+
 #### memo
 
 - npm create vite@latest
@@ -9,3 +14,6 @@
 - npm install -D eslint-plugin-testing-library eslint-plugin-jest-dom
 
 - npm install react-bootstrap bootstrap
+
+- npm install -D msw msw-devtools
+- npx msw init public/ --save
