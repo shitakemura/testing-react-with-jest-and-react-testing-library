@@ -1,10 +1,18 @@
 import { useState } from 'react'
 
+// eslint-disable-next-line
+export function replaceCamelWithSpaces(colorName: string) {
+  return colorName.replace(/\B([A-Z])\B/g, ' $1')
+}
+
 function App() {
-  const [buttonColor, setButtonColor] = useState<'red' | 'blue'>('red')
+  const [buttonColor, setButtonColor] = useState<
+    'MediumVioletRed' | 'MidnightBlue'
+  >('MediumVioletRed')
   const [disabled, setDisabled] = useState(false)
 
-  const newButtonColor = buttonColor === 'red' ? 'blue' : 'red'
+  const newButtonColor =
+    buttonColor === 'MediumVioletRed' ? 'MidnightBlue' : 'MediumVioletRed'
   const changeButtonColor = () => setButtonColor(newButtonColor)
 
   const handleOnChange = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -16,11 +24,13 @@ function App() {
       <h1>Color Button</h1>
       <div>
         <button
-          style={{ backgroundColor: disabled ? 'gray' : buttonColor }}
+          style={{
+            backgroundColor: disabled ? 'gray' : buttonColor,
+          }}
           onClick={changeButtonColor}
           disabled={disabled}
         >
-          {`Change to ${newButtonColor}`}
+          {`Change to ${replaceCamelWithSpaces(newButtonColor)}`}
         </button>
       </div>
       <label>
