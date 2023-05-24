@@ -2,7 +2,11 @@ import { useOrderDetails } from '../../contexts/OrderDetails'
 import { formatCurrency } from '../../utilities'
 import { Options } from './Options'
 
-export function OrderEntry() {
+type OrderEntryProps = {
+  goToSummary: () => void
+}
+
+export function OrderEntry({ goToSummary }: OrderEntryProps) {
   const { totals } = useOrderDetails()
 
   return (
@@ -13,6 +17,9 @@ export function OrderEntry() {
       <h2 style={{ marginTop: '24px' }}>
         Grand total: {formatCurrency(totals.scoops + totals.toppings)}
       </h2>
+      <button type="button" onClick={goToSummary}>
+        Go to summary
+      </button>
     </div>
   )
 }

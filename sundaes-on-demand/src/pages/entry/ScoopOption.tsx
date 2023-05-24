@@ -1,7 +1,7 @@
 import Col from 'react-bootstrap/Col'
 import Row from 'react-bootstrap/Row'
 import Form from 'react-bootstrap/Form'
-import { OptionItem } from '../../types/OptionType'
+import { OptionItem } from '../../types'
 import { useOrderDetails } from '../../contexts/OrderDetails'
 
 export function ScoopOption({ name, imagePath }: OptionItem) {

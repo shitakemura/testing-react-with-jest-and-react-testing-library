@@ -1,5 +1,5 @@
 import { createContext, useContext, useState } from 'react'
-import { Option, OptionType } from '../types/OptionType'
+import { Option, OptionType } from '../types'
 import { pricePerItem } from '../constants'
 
 type OptionCounts = {

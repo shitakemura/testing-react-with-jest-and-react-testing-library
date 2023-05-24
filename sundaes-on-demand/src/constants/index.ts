@@ -1,4 +1,4 @@
-import { OptionType } from '../types/OptionType'
+import { OptionType } from '../types'
 
 export const pricePerItem: { [key in OptionType]: number } = {
   scoops: 2,

@@ -1,7 +1,7 @@
 import Row from 'react-bootstrap/Row'
 import axios from 'axios'
 import { useEffect, useState } from 'react'
-import { OptionItem, OptionType } from '../../types/OptionType'
+import { OptionItem, OptionType } from '../../types'
 import { ScoopOption } from './ScoopOption'
 import { ToppingOption } from './ToppingOption'
 import { AlertBanner } from '../../components/AlertBanner'

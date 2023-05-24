@@ -2,7 +2,11 @@ import { SummaryForm } from './SummaryForm'
 import { useOrderDetails } from '../../contexts/OrderDetails'
 import { formatCurrency } from '../../utilities'
 
-export function OrderSummary() {
+type OrderSummaryProps = {
+  goToConfirmation: () => void
+}
+
+export function OrderSummary({ goToConfirmation }: OrderSummaryProps) {
   const { totals, optionCounts } = useOrderDetails()
 
   const scoopArray = Object.entries(optionCounts.scoops) // [["chocolate, 2"], ["vanilla", 1]]
@@ -22,7 +26,7 @@ export function OrderSummary() {
       <ul>{scoopList}</ul>
       <h2>Toppings: {formatCurrency(totals.toppings)}</h2>
       <ul>{toppingList}</ul>
-      <SummaryForm />
+      <SummaryForm goToConfirmation={goToConfirmation} />
     </div>
   )
 }
