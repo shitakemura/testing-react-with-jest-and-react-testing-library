@@ -4,6 +4,7 @@ import { useEffect, useState } from 'react'
 import { OptionItem, OptionType } from '../../types/OptionType'
 import { ScoopOption } from './ScoopOption'
 import { ToppingOption } from './ToppingOption'
+import { AlertBanner } from '../../components/AlertBanner'
 
 type OptionsProps = {
   optionType: OptionType
@@ -11,6 +12,7 @@ type OptionsProps = {
 
 export function Options({ optionType }: OptionsProps) {
   const [items, setItems] = useState<OptionItem[]>([])
+  const [error, setError] = useState<Error | null>(null)
 
   useEffect(() => {
     const fetchOptions = async () => {
@@ -20,11 +22,15 @@ export function Options({ optionType }: OptionsProps) {
         )
         setItems(data)
       } catch (error) {
-        console.log(error)
+        if (error instanceof Error) {
+          setError(error)
+        }
       }
     }
     fetchOptions()
   }, [optionType])
+
+  if (error) return <AlertBanner />
 
   const ItemComponent = optionType === 'scoops' ? ScoopOption : ToppingOption
 

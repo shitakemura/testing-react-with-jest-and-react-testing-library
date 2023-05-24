@@ -25,6 +25,8 @@
 - query[All]ByXXX() : expect element not to be in DOM
 - await find[All]ByXXX(): expect element to appear async
 
+  - await waitFor() for tests where await find[All]ByXXX() isn't enough
+
 - await user.click()
 - await user.hover()
 - await user.unhover()

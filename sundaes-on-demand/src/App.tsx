@@ -1,4 +1,4 @@
-import { Options } from './pages/entry/Options'
+import { OrderEntry } from './pages/entry/OrderEntry'
 import { SummaryForm } from './pages/summary/SummaryForm'
 
 function App() {
@@ -6,8 +6,7 @@ function App() {
     <>
       <h1>Sandaes on demand</h1>
       <SummaryForm />
-      <Options optionType="scoops" />
-      <Options optionType="toppings" />
+      <OrderEntry />
     </>
   )
 }
