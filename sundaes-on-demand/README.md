@@ -22,6 +22,7 @@
 #### memo
 
 - get[All]ByXXX() : expect element to be in DOM
+  - getByXXX("xxxx", { exact: false })
 - query[All]ByXXX() : expect element not to be in DOM
 - await find[All]ByXXX(): expect element to appear async
 
