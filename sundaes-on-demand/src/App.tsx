@@ -7,6 +7,7 @@ function App() {
       <h1>Sandaes on demand</h1>
       <SummaryForm />
       <Options optionType="scoops" />
+      <Options optionType="toppings" />
     </>
   )
 }
