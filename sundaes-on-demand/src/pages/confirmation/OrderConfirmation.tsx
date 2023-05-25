@@ -2,6 +2,7 @@ import axios from 'axios'
 import { useEffect, useState } from 'react'
 import { useOrderDetailsDispatch } from '../../contexts/OrderDetails'
 import { Order } from '../../types'
+import { AlertBanner } from '../../components/AlertBanner'
 
 type OrderConfirmationProps = {
   goToEntry: () => void
@@ -11,8 +12,6 @@ export function OrderConfirmation({ goToEntry }: OrderConfirmationProps) {
   const { resetOrder } = useOrderDetailsDispatch()
   const [orderNumber, setOrderNumber] = useState<number | null>(null)
   const [error, setError] = useState<Error | null>(null)
-
-  console.log(error)
 
   const handleClick = () => {
     resetOrder()
@@ -33,6 +32,17 @@ export function OrderConfirmation({ goToEntry }: OrderConfirmationProps) {
 
     postOrder()
   }, [])
+
+  if (error) {
+    return (
+      <>
+        <AlertBanner />
+        <button type="button" onClick={handleClick}>
+          Create new order
+        </button>
+      </>
+    )
+  }
 
   if (!orderNumber) return <div>Loading</div>
 
