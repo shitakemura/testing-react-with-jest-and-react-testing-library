@@ -1,5 +1,9 @@
 import { rest } from 'msw'
 
+function sleep(ms: number) {
+  return new Promise((resolve) => setTimeout(resolve, ms))
+}
+
 export const handlers = [
   rest.get('http://localhost:3030/scoops', (_, res, ctx) => {
     return res(
@@ -17,5 +21,9 @@ export const handlers = [
         { name: 'Hot fudge', imagePath: '/images/hot-fudge.png' },
       ])
     )
+  }),
+  rest.post('http://localhost:3030/order', async (_, res, ctx) => {
+    await sleep(100)
+    return res(ctx.json({ orderNumber: 12345678 }))
   }),
 ]

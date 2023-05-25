@@ -36,6 +36,12 @@
 
 ---
 
+- screen.debug()
+- const { container } = render(<App />)
+- logRoles(container)
+
+---
+
 - "Not wrapped in act()" Error
   - [NG] Test renders component -> Component triggers network call -> Test function exits -> Unmount component -> [x]Network call returns
   - [OK] Test renders component -> Component triggers network call -> Unmount component -> Network call is canceled -> Test function exits

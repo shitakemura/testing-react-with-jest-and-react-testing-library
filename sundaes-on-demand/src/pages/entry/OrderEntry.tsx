@@ -11,14 +11,13 @@ export function OrderEntry({ goToSummary }: OrderEntryProps) {
 
   return (
     <div>
+      <h1>Design Your Sundae!</h1>
       <Options optionType="scoops" />
       <Options optionType="toppings" />
 
-      <h2 style={{ marginTop: '24px' }}>
-        Grand total: {formatCurrency(totals.scoops + totals.toppings)}
-      </h2>
+      <h2>Grand total: {formatCurrency(totals.scoops + totals.toppings)}</h2>
       <button type="button" onClick={goToSummary}>
-        Go to summary
+        Order Sundae!
       </button>
     </div>
   )

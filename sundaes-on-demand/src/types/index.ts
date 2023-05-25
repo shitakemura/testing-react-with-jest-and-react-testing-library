@@ -8,3 +8,7 @@ export type OptionItem = {
 export type Option = Record<string, number>
 
 export type OrderPhase = 'inProgress' | 'review' | 'completed'
+
+export type Order = {
+  orderNumber: number
+}
