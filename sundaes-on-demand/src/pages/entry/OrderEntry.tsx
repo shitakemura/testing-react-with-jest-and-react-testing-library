@@ -8,6 +8,7 @@ type OrderEntryProps = {
 
 export function OrderEntry({ goToSummary }: OrderEntryProps) {
   const { totals } = useOrderDetailsState()
+  const hasScoops = totals.scoops > 0
 
   return (
     <div>
@@ -16,7 +17,7 @@ export function OrderEntry({ goToSummary }: OrderEntryProps) {
       <Options optionType="toppings" />
 
       <h2>Grand total: {formatCurrency(totals.scoops + totals.toppings)}</h2>
-      <button type="button" onClick={goToSummary}>
+      <button type="button" onClick={goToSummary} disabled={!hasScoops}>
         Order Sundae!
       </button>
     </div>

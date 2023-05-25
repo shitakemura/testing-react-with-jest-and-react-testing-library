@@ -1,4 +1,5 @@
 import { render, screen, waitFor } from '../../test-utils/testing-library-utils'
+import userEvent from '@testing-library/user-event'
 import { OrderEntry } from './OrderEntry'
 import { rest } from 'msw'
 import { server } from '../../mocks/server'
@@ -23,4 +24,25 @@ test('handles error for scoops and toppings routes', async () => {
     )
     expect(alerts).toHaveLength(2)
   })
+})
+
+test('disabled order summary button if there are no scoops ordered', async () => {
+  const user = userEvent.setup()
+  render(<OrderEntry goToSummary={jest.fn()} />)
+
+  const orderSummaryButton = screen.getByRole('button', {
+    name: 'Order Sundae!',
+  })
+  expect(orderSummaryButton).toBeDisabled()
+
+  const vanillaInput = await screen.findByRole('spinbutton', {
+    name: 'Vanilla',
+  })
+  await user.clear(vanillaInput)
+  await user.type(vanillaInput, '1')
+  expect(orderSummaryButton).toBeEnabled()
+
+  await user.clear(vanillaInput)
+  await user.type(vanillaInput, '0')
+  expect(orderSummaryButton).toBeDisabled()
 })
