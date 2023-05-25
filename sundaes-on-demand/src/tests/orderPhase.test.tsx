@@ -101,3 +101,64 @@ test('order phases for happy path', async () => {
   // unmount the component to trigger cleanup and avoid "not wrapped in act()" error
   unmount()
 })
+
+test('Toppings header is not on summary page if no toppings ordered', async () => {
+  const user = userEvent.setup()
+  const { unmount } = render(<App />)
+
+  const chocolateInput = await screen.findByRole('spinbutton', {
+    name: 'Chocolate',
+  })
+  await user.clear(chocolateInput)
+  await user.type(chocolateInput, '1')
+
+  const orderSummaryButton = screen.getByRole('button', {
+    name: 'Order Sundae!',
+  })
+  await user.click(orderSummaryButton)
+
+  const scoopsSubTotal = screen.getByText('Scoops: $2.00')
+  expect(scoopsSubTotal).toBeInTheDocument()
+
+  const toppingsSubtotal = screen.queryByText('Toppings: $', { exact: false })
+  expect(toppingsSubtotal).not.toBeInTheDocument()
+
+  unmount()
+})
+
+test('Toppings header is not on summary page if toppings ordered then removed', async () => {
+  const user = userEvent.setup()
+  const { unmount } = render(<App />)
+
+  const chocolateInput = await screen.findByRole('spinbutton', {
+    name: 'Chocolate',
+  })
+  await user.clear(chocolateInput)
+  await user.type(chocolateInput, '1')
+
+  const cherriesInput = await screen.findByRole('checkbox', {
+    name: 'Cherries',
+  })
+  await user.click(cherriesInput)
+
+  const toppingsTotal = screen.getByText('Toppings total: $', { exact: false })
+  expect(cherriesInput).toBeChecked()
+  expect(toppingsTotal).toHaveTextContent('1.50')
+
+  await user.click(cherriesInput)
+  expect(cherriesInput).not.toBeChecked()
+  expect(toppingsTotal).toHaveTextContent('0.00')
+
+  const orderSummaryButton = screen.getByRole('button', {
+    name: 'Order Sundae!',
+  })
+  await user.click(orderSummaryButton)
+
+  const scoopsSubTotal = screen.getByText('Scoops: $2.00')
+  expect(scoopsSubTotal).toBeInTheDocument()
+
+  const toppingsSubtotal = screen.queryByText('Toppings: $', { exact: false })
+  expect(toppingsSubtotal).not.toBeInTheDocument()
+
+  unmount()
+})
