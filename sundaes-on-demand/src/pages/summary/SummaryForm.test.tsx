@@ -4,7 +4,7 @@ import { SummaryForm } from './SummaryForm'
 
 describe('SummaryForm', () => {
   test('Initial condition', () => {
-    render(<SummaryForm />)
+    render(<SummaryForm goToConfirmation={jest.fn()} />)
 
     const checkbox = screen.getByRole('checkbox', {
       name: 'I agree to Terms and Conditions',
@@ -18,7 +18,7 @@ describe('SummaryForm', () => {
   test('Checkbox disables button on first click and enables on second click', async () => {
     const user = userEvent.setup()
 
-    render(<SummaryForm />)
+    render(<SummaryForm goToConfirmation={jest.fn()} />)
 
     const checkbox = screen.getByRole('checkbox')
     const confirmButton = screen.getByRole('button', { name: 'Confirm order' })
@@ -33,7 +33,7 @@ describe('SummaryForm', () => {
   test('popover responds to hover', async () => {
     const user = userEvent.setup()
 
-    render(<SummaryForm />)
+    render(<SummaryForm goToConfirmation={jest.fn()} />)
 
     // popover starts out hidden
     const nullPopover = screen.queryByText(

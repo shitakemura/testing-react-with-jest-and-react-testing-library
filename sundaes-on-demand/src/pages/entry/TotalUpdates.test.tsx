@@ -60,7 +60,7 @@ test('update topping subtotal when toppings change', async () => {
 
 describe('grand total', () => {
   test('grand total starts at $0.00', () => {
-    const { unmount } = render(<OrderEntry />)
+    const { unmount } = render(<OrderEntry goToSummary={jest.fn()} />)
     const grandTotal = screen.getByRole('heading', { name: /grand total: \$/i })
     expect(grandTotal).toHaveTextContent('0.00')
 
@@ -68,7 +68,7 @@ describe('grand total', () => {
   })
   test('grand total updates properly if scoop is added first', async () => {
     const user = userEvent.setup()
-    render(<OrderEntry />)
+    render(<OrderEntry goToSummary={jest.fn()} />)
     const grandTotal = screen.getByRole('heading', { name: /grand total: \$/i })
 
     // update vanilla scoops to 2 and check grand total
@@ -89,7 +89,7 @@ describe('grand total', () => {
 
   test('grand total updates properly if topping is added first', async () => {
     const user = userEvent.setup()
-    render(<OrderEntry />)
+    render(<OrderEntry goToSummary={jest.fn()} />)
     const grandTotal = screen.getByRole('heading', { name: /grand total: \$/i })
 
     // add cherries and check grand total
@@ -110,7 +110,7 @@ describe('grand total', () => {
 
   test('grand total updates properly if item is removed', async () => {
     const user = userEvent.setup()
-    render(<OrderEntry />)
+    render(<OrderEntry goToSummary={jest.fn()} />)
     const grandTotal = screen.getByRole('heading', { name: /grand total: \$/i })
 
     // update vanilla scoops to 2
