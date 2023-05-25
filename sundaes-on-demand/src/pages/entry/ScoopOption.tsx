@@ -2,10 +2,10 @@ import Col from 'react-bootstrap/Col'
 import Row from 'react-bootstrap/Row'
 import Form from 'react-bootstrap/Form'
 import { OptionItem } from '../../types'
-import { useOrderDetails } from '../../contexts/OrderDetails'
+import { useOrderDetailsDispatch } from '../../contexts/OrderDetails'
 
 export function ScoopOption({ name, imagePath }: OptionItem) {
-  const { updateItemCount } = useOrderDetails()
+  const { updateItemCount } = useOrderDetailsDispatch()
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     updateItemCount(name, Number(event.target.value), 'scoops')
   }

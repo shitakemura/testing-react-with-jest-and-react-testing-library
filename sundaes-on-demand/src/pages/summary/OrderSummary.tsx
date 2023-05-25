@@ -1,5 +1,5 @@
 import { SummaryForm } from './SummaryForm'
-import { useOrderDetails } from '../../contexts/OrderDetails'
+import { useOrderDetailsState } from '../../contexts/OrderDetails'
 import { formatCurrency } from '../../utilities'
 
 type OrderSummaryProps = {
@@ -7,7 +7,7 @@ type OrderSummaryProps = {
 }
 
 export function OrderSummary({ goToConfirmation }: OrderSummaryProps) {
-  const { totals, optionCounts } = useOrderDetails()
+  const { totals, optionCounts } = useOrderDetailsState()
 
   const scoopArray = Object.entries(optionCounts.scoops) // [["chocolate, 2"], ["vanilla", 1]]
   const scoopList = scoopArray.map(([key, value]) => (

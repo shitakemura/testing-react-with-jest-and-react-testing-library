@@ -1,4 +1,4 @@
-import { useOrderDetails } from '../../contexts/OrderDetails'
+import { useOrderDetailsState } from '../../contexts/OrderDetails'
 import { formatCurrency } from '../../utilities'
 import { Options } from './Options'
 
@@ -7,7 +7,7 @@ type OrderEntryProps = {
 }
 
 export function OrderEntry({ goToSummary }: OrderEntryProps) {
-  const { totals } = useOrderDetails()
+  const { totals } = useOrderDetailsState()
 
   return (
     <div>

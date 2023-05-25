@@ -1,10 +1,10 @@
 import Col from 'react-bootstrap/Col'
 import Form from 'react-bootstrap/Form'
 import { OptionItem } from '../../types'
-import { useOrderDetails } from '../../contexts/OrderDetails'
+import { useOrderDetailsDispatch } from '../../contexts/OrderDetails'
 
 export function ToppingOption({ name, imagePath }: OptionItem) {
-  const { updateItemCount } = useOrderDetails()
+  const { updateItemCount } = useOrderDetailsDispatch()
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const itemCount = event.target.checked ? 1 : 0
     updateItemCount(name, itemCount, 'toppings')

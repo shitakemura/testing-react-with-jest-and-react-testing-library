@@ -1,6 +1,6 @@
 import axios from 'axios'
 import { useEffect, useState } from 'react'
-import { useOrderDetails } from '../../contexts/OrderDetails'
+import { useOrderDetailsDispatch } from '../../contexts/OrderDetails'
 import { Order } from '../../types'
 
 type OrderConfirmationProps = {
@@ -8,7 +8,7 @@ type OrderConfirmationProps = {
 }
 
 export function OrderConfirmation({ goToEntry }: OrderConfirmationProps) {
-  const { resetOrder } = useOrderDetails()
+  const { resetOrder } = useOrderDetailsDispatch()
   const [orderNumber, setOrderNumber] = useState<number | null>(null)
   const [error, setError] = useState<Error | null>(null)
 

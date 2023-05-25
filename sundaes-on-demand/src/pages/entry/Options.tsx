@@ -7,7 +7,7 @@ import { ToppingOption } from './ToppingOption'
 import { AlertBanner } from '../../components/AlertBanner'
 import { pricePerItem } from '../../constants'
 import { formatCurrency } from '../../utilities'
-import { useOrderDetails } from '../../contexts/OrderDetails'
+import { useOrderDetailsState } from '../../contexts/OrderDetails'
 
 type OptionsProps = {
   optionType: OptionType
@@ -16,7 +16,7 @@ type OptionsProps = {
 export function Options({ optionType }: OptionsProps) {
   const [items, setItems] = useState<OptionItem[]>([])
   const [error, setError] = useState<Error | null>(null)
-  const { totals } = useOrderDetails()
+  const { totals } = useOrderDetailsState()
 
   useEffect(() => {
     // create an abortController to attach to network request
